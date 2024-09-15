@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+ 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Catamaran:wght@200&family=Courgette&family=Edu+TAS+Beginner:wght@700&family=Lato:wght@300;900&family=Mukta:wght@700&family=Mulish:wght@300&family=Open+Sans&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@300&family=Raleway:wght@100&family=Roboto+Condensed:wght@700&family=Roboto+Slab&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f30fac2c61.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./to do.css">
+</head>
+<body onload="time()">
+    <div class="container ">
+        <div class="date-hour">
+            <p id="date"></p>
+            <p id="hour"></p>
+        </div>
+        <header>
+            <h1>To Do List</h1>
+        </header>
+
+                <div class="addTask">
+                    <input type="text" id="inp">
+                    <button id="btn">+</button>
+                </div>
+                <ol class="notCompleted">
+                    <h3>not complete</h3>
+                </ol>
+                <ol class="completed">
+                    <h3> complete</h3>
+                </ol>
+               
+    </div>
+</body>
+<style>
+    *{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	height: 100vh;
+    background-color: palevioletred;
+	background: linear-gradient(139deg,#03ddffcb 0%,#ff0381b6 90%);
+}
+.date-hour {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 1rem 1.5rem 1rem;
+    font-size: 16px;
+    color: #102F5e;
+}
+#date {
+    flex: 1
+}
+
+.container{
+	position: relative;
+	max-width: 800px;
+	padding: 10px;
+	margin: 50px auto;
+}
+.addTask{
+	width: 100%;
+	display: flex;
+	padding: 10px 0;
+}
+.addTask > input[type="text"]{
+	width: 90%;
+	color: #333;
+	border:none;
+	border-bottom: 2px solid #666;
+	background: none;
+	padding: 10px;
+	font-size: 22px;
+	outline: none;
+}
+.addTask button{
+	margin: 0 10px;
+	background: #222;
+	color: #fff;
+	font-size: 18px;
+	text-transform: uppercase;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.notCompleted, .Completed{
+	margin: 5px 0;
+	padding: 20px;
+}
+h3{
+	font-size: 28px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #fff;
+}
+ol{
+	list-style: none;
+	counter-reset: my-counter;
+}
+ol li{
+	width: 100%;
+	padding: 18px;
+	margin: 5px 0;
+    background: #e96969bb;
+
+	font-size: 22px;
+	counter-increment: my-counter;
+}
+ol.completed li{
+	background: #00ff62;
+}
+ol li::before{
+	content: counter(my-counter);
+	background: #231381;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	display: inline-block;
+	line-height: 2rem;
+	text-align: center;
+	color: #fff;
+	margin-right: 0.5rem;
+}
+li button{
+	float: right;
+	padding: 5px;
+	font-size: 28px;
+	line-height: 28px;
+	margin-right: 15px;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+</style>
+<script>
+let inputs = document.getElementById("inp");
+let btn = document.getElementById("btn");
+let completed=document.querySelector(".completed");
+let notCompleted=document.querySelector(".notCompleted");
+let reg = document.getElementById("reg");
+
+btn.addEventListener("click",()=>{
+    if(inputs.value == ""){
+        alert("Please Enter Task")
+    }else{
+        let newEle = document.createElement("li");
+        let check = document.createElement("button");
+        let del = document.createElement("button");
+        let edit = document.createElement("button");
+        newEle.innerHTML=`<span>${inputs.value}</span>`;
+        check.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+</svg>`;
+        del.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg>`;
+
+        notCompleted.appendChild(newEle);
+
+        newEle.appendChild(check);
+        newEle.appendChild(del);
+        newEle.appendChild(edit);
+
+        inputs.value="";
+       
+    del.addEventListener("click" ,()=>{
+        newEle.remove();
+    })
+    check.addEventListener("click" ,()=>{
+        completed.appendChild(newEle);
+        check.style.display="none";
+
+    })
+    edit.addEventListener("click" ,()=>{
+        editTask();
+    })
+}
+})
+function editTask(newEle) {
+            const span = newEle.querySelector("span");
+            const newText = prompt("Edit task:", span.textContent);
+            if (newText !== null && newText !== "") {
+                span.textContent = newText;
+            }
+        }
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
+document.getElementById("date").innerHTML = today.toDateString();
+const data=new Date();
+function time() {
+    let h=data.getHours();
+    let m=data.getMinutes();
+    let s=data.getSeconds();
+    if(h < 10)
+        h = "0" +h;
+     if(m < 10)
+     m = "0" + m;
+    if(s < 10)
+        s = "0" + s;
+        document.getElementById("hour").innerHTML = h +":"+ m + ":" + s;
+    setTimeout('time()', 500);
+}
+    </script>
+</html>
+   
